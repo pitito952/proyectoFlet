@@ -2,7 +2,7 @@
 #   Ejemplo del uso de "flet" con Python
 #
 import flet as ft
-from flet import IconButton, Page, Row, TextField, icons
+#from flet import IconButton, Page, Row, TextField, icons
 
 
 def main(page: ft.Page):
@@ -30,7 +30,7 @@ def main(page: ft.Page):
     )        
 
 # Modo Desktop
-#ft.flet.app(target=main)
+ft.flet.app(target=main)
 
 # Modo Web
-ft.flet.app(target=main, view=ft.WEB_BROWSER, port=6173)
+#ft.flet.app(target=main, view=ft.WEB_BROWSER, port=6173)
