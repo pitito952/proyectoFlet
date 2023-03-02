@@ -2,9 +2,9 @@ import flet as ft  # Al colocarle "as" no es necesario importar los módulos por
 #from flet import Column, ElevatedButton, Text, TextField, Page
 
 
-def main(page):         # Así aparece en los ejemplos de la guía.
+def main(page):           # Así aparece en los ejemplos de la guía.
 #def main(page: Page):    # Modo inicial. El instructor lo sigue usando ya que permite ver los módulos
-                          # de "page" cuando se escribe lo cual ayuda.
+                          # de "page" cuando se escribe, lo cual ayuda.
     txt_nombre = ft.TextField(label='Nombre:', autofocus=True)
     txt_apellido = ft.TextField(label='Apellido:')
     col_saludo = ft.Column()
