@@ -8,8 +8,7 @@ def main(page: Page):
     txt_apellido = TextField(label="Apellido:")
     
     # Definir la disposición de los controles (campos) en la página
-    column_controles = Column(
-                    controls=[txt_nombre, txt_apellido])
+    column_controles = Column(controls=[txt_nombre, txt_apellido])
     
     # Deshabilitar campos INDIVIDUALMENTE
     txt_nombre.disabled = True
