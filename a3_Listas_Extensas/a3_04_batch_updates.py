@@ -1,4 +1,4 @@
-#
+#   10/03/2023  
 # Listas extensas mostradas en bloques para acelerar renderizado
 #
 import flet as ft
@@ -17,4 +17,4 @@ def main(page: ft.Page):
     page.update()
 
 
-ft.app(target=main, view=ft.WEB_BROWSER)    
+ft.app(target=main, view=ft.WEB_BROWSER)
