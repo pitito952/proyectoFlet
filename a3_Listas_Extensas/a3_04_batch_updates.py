@@ -1,3 +1,6 @@
+#
+# Listas extensas mostradas en bloques para acelerar renderizado
+#
 import flet as ft
 
 
