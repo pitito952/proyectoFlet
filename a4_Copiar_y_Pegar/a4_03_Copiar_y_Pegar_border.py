@@ -23,7 +23,7 @@ def main(page: ft.Page):
     def drag_will_accept(evento):
         # Borde negro cuando se permite pegar y rojo cuando no
         evento.control.content.border = ft.border.all(
-            2, ft.colors.BLACK45 if evento.data == "true" else ft.colors.RED
+            7, ft.colors.BLACK if evento.data == "true" else ft.colors.RED
         )
         evento.control.update()
 
