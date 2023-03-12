@@ -1,5 +1,5 @@
 
-#  Ejemplo 1 de arrastrar y soltar
+#  Ejemplo 2 de arrastrar y soltar
 
 import flet as ft
 
@@ -29,6 +29,13 @@ def main(page: ft.Page):
                         content=ft.Text("1", size=20),
                         alignment=ft.alignment.center,
                     ),
+                    content_when_dragging=ft.Container(
+                        width=50,
+                        height=50,
+                        bgcolor=ft.colors.BLUE_GREY_200,
+                        border_radius=5,
+                    ),
+                    content_feedback=ft.Text("1"),
                 ),
                 ft.Container(width=100),
                 ft.DragTarget(
@@ -48,4 +55,4 @@ def main(page: ft.Page):
     )
 
 
-ft.app(target=main)
+ft.app(target=main, view=ft.WEB_BROWSER)
