@@ -11,4 +11,9 @@ def main(page: ft.Page):
     page.update()
 
 
+# Original del ejercicio
+# ft.app(target=main, view=ft.WEB_BROWSER)
+
+# Modificado por mi en base al punto "URL strategy for web" de la misma página del
+# manual. Con la forma normal (anterior) NO hacía el cambio de página correctamente.
 ft.app(target=main, route_url_strategy="hash", view=ft.WEB_BROWSER)
