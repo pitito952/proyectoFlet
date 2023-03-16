@@ -18,59 +18,59 @@ from flet import (
 
 
 def main(page: Page):
-    barra_progreso: Dict[str, ProgressRing] = {}
-    archivos = Ref[Column]()
-    btn_subir = Ref[ElevatedButton]()
+    prog_bars: Dict[str, ProgressRing] = {}
+    files = Ref[Column]()
+    upload_button = Ref[ElevatedButton]()
 
-    # Función que responde a la selección de archivos
-    def file_picker_result(evento: FilePickerResultEvent):
-        btn_subir.current.disabled = True if evento.archivos is None else False
-        barra_progreso.clear()
-        archivos.current.controls.clear()
-        if evento.archivos is not None:
-            for f in evento.archivos:
-                progBar_archivo = ProgressRing(value=0, bgcolor="#eeeeee", width=20, height=20)
-                barra_progreso[f.name] = progBar_archivo
-                archivos.current.controls.append(Row([progBar_archivo, Text(f.name)]))
+    def file_picker_result(e: FilePickerResultEvent):
+        upload_button.current.disabled = True if e.files is None else False
+        prog_bars.clear()
+        files.current.controls.clear()
+        if e.files is not None:
+            for f in e.files:
+                prog = ProgressRing(value=0, bgcolor="#eeeeee", width=20, height=20)
+                prog_bars[f.name] = prog
+                files.current.controls.append(Row([prog, Text(f.name)]))
         page.update()
 
-    # Función que reporta el progreso
-    def on_upload_progress(evento: FilePickerUploadEvent):
-        barra_progreso[evento.file_name].value = evento.progress
-        barra_progreso[evento.file_name].update()
+    def on_upload_progress(e: FilePickerUploadEvent):
+        prog_bars[e.file_name].value = e.progress
+        prog_bars[e.file_name].update()
 
     file_picker = FilePicker(on_result=file_picker_result, on_upload=on_upload_progress)
 
-    def upload_files(evento):
-        lista_archivos = []
-        if file_picker.result is not None and file_picker.result.archivos is not None:
-            for f in file_picker.result.archivos:
-                lista_archivos.append(
+    def upload_files(e):
+        uf = []
+        if file_picker.result is not None and file_picker.result.files is not None:
+            for f in file_picker.result.files:
+                uf.append(
                     FilePickerUploadFile(
                         f.name,
                         upload_url=page.get_upload_url(f.name, 600),
                     )
                 )
-            file_picker.upload(lista_archivos)
+            file_picker.upload(uf)
 
     # hide dialog in a overlay
     page.overlay.append(file_picker)
 
     page.add(
         ElevatedButton(
-            "Seleccionar archivos...",
+            "Select files...",
             icon=icons.FOLDER_OPEN,
             on_click=lambda _: file_picker.pick_files(allow_multiple=True),
         ),
-        Column(ref=archivos),
+        Column(ref=files),
         ElevatedButton(
-            "Subir",
-            ref=btn_subir,
+            "Upload",
+            ref=upload_button,
             icon=icons.UPLOAD,
             on_click=upload_files,
             disabled=True,
         ),
     )
 
-
-flet.app(target=main, upload_dir="uploads")
+# En aplicación de escritorio da error en linea 49
+#flet.app(target=main, upload_dir="uploads")
+# En aplicación web funciona correctamente
+flet.app(target=main, upload_dir="/media/pitito/homeWIN10/Programación/Flet/pruebaFlet/uploads", view=flet.WEB_BROWSER)
